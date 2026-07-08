@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Ask a question
+    url: https://github.com/Cryptoteep/promptkit/discussions
+    about: Use Discussions for "how do I…" questions.
+  - name: Report a security vulnerability
+    url: https://github.com/Cryptoteep/promptkit/security/advisories/new
+    about: Do NOT open a public issue for security reports.

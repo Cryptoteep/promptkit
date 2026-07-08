@@ -1,0 +1,14 @@
+# Keep the published package lean.
+src/
+tests/
+examples/
+docs/
+.github/
+.eslint*
+.prettierrc
+.editorconfig
+vitest.config.ts
+tsconfig.json
+tsup.config.ts
+coverage/
+*.log

@@ -1,0 +1,74 @@
+{
+  "name": "promptkit",
+  "version": "0.1.0",
+  "description": "A TypeScript-first toolkit for defining, rendering, testing, and evaluating LLM prompts. Make prompt engineering a disciplined, testable craft.",
+  "license": "MIT",
+  "author": "Cryptoteep <https://github.com/Cryptoteep>",
+  "homepage": "https://github.com/Cryptoteep/promptkit",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cryptoteep/promptkit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Cryptoteep/promptkit/issues"
+  },
+  "keywords": [
+    "prompt",
+    "prompt-engineering",
+    "llm",
+    "ai",
+    "testing",
+    "eval",
+    "evaluation",
+    "typescript",
+    "template",
+    "promptkit"
+  ],
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./test": {
+      "types": "./dist/test.d.ts",
+      "import": "./dist/test.js",
+      "require": "./dist/test.cjs"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "promptkit": "./dist/cli/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint . --ext .ts",
+    "format": "prettier --write .",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build && npm run test"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "eslint": "^9.0.0",
+    "prettier": "^3.2.0",
+    "tsup": "^8.0.1",
+    "typescript": "^5.4.0",
+    "typescript-eslint": "^7.7.0",
+    "vitest": "^1.4.0"
+  }
+}
