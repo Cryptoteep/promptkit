@@ -13,6 +13,9 @@ import { LoaderError } from './errors.js'
 import type { PromptDefinition, PromptInput } from './types.js'
 
 const SUPPORTED_EXTENSIONS = new Set(['.js', '.mjs', '.cjs', '.ts', '.mts', '.cts'])
+const TYPESCRIPT_EXTENSIONS = new Set(['.ts', '.mts', '.cts'])
+const TYPESCRIPT_LOADER_HINT =
+  "Node can't import `.ts` files directly. Run with `tsx`, `bun`, or `ts-node`, or pre-compile to `.js`."
 
 /** Options for {@link loadPromptsFromDir}. */
 export interface LoadOptions {
@@ -92,8 +95,16 @@ export async function loadPromptFile(
     const url = pathToFileURL(filePath).href
     mod = (await import(url)) as Record<string, unknown>
   } catch (e) {
+    const errorMessage = e instanceof Error ? e.message : String(e)
+    const needsTypeScriptLoader =
+      TYPESCRIPT_EXTENSIONS.has(extname(filePath)) &&
+      typeof e === 'object' &&
+      e !== null &&
+      'code' in e &&
+      e.code === 'ERR_UNKNOWN_FILE_EXTENSION'
+
     throw new LoaderError(
-      `Failed to import "${filePath}": ${e instanceof Error ? e.message : String(e)}`,
+      `Failed to import "${filePath}": ${errorMessage}${needsTypeScriptLoader ? ` ${TYPESCRIPT_LOADER_HINT}` : ''}`,
       filePath,
     )
   }

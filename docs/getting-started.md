@@ -30,6 +30,10 @@ export default definePrompt<{ name: string; language?: string }>({
 })
 ```
 
+TypeScript prompt files require a runtime that supports them, such as `tsx`,
+`bun`, or `ts-node`. Plain Node cannot import `.ts` files directly, so use one
+of those runtimes or pre-compile the files to `.js`.
+
 Render it without a model:
 
 ```ts
